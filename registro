@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" href="./css/css/bootstrap.min.css">
+</head>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-info">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BELDAKAR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./pagina_inicio.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="./contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menú
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Flota</a></li>
+                    <li><a class="dropdown-item" href="#">Tarifas</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="./inicio_sesion.html">Registro</a></li>
+                </ul>
+                </li>
+                <li class="nav-item">
+                <!--<a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Búsqueda">
+                <button class="btn btn-outline-success" type="submit">Búsqueda</button>
+            </form>
+            </div>
+        </div>
+        </nav>
+    </header>
+
+<body>
+    <div class="container">
+        <h2>Registro de Usuario</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <div class="error-message" id="nombre-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+                <div class="error-message" id="apellidos-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni" required pattern="^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$" title="Introduce un DNI válido (8 números y una letra)">
+                <div class="error-message" id="dni-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección Postal:</label>
+                <input type="text" id="direccion" name="direccion" required>
+                <div class="error-message" id="direccion-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Número de Teléfono:</label>
+                <div class="phone-group">
+                    <input type="tel" id="prefijo" name="prefijo" placeholder="Prefijo (+XX)" pattern="^\+\d+$" title="Introduce el prefijo con el signo + seguido de los números">
+                    <input type="tel" id="numero_telefono" name="numero_telefono" required pattern="^[0-9]{9}$" title="Introduce un número de teléfono de 9 dígitos">
+                </div>
+                <div class="error-message" id="telefono-error"></div>
+            </div>
+
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        const nombreInput = document.getElementById('nombre');
+        const apellidosInput = document.getElementById('apellidos');
+        const dniInput = document.getElementById('dni');
+        const emailInput = document.getElementById('email');
+        const direccionInput = document.getElementById('direccion');
+        const prefijoInput = document.getElementById('prefijo');
+        const numeroTelefonoInput = document.getElementById('numero_telefono');
+
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Funciones de validación (puedes agregar más)
+            function mostrarError(elementId, message) {
+                document.getElementById(elementId).textContent = message;
+            }
+
+            function limpiarError(elementId) {
+                document.getElementById(elementId).textContent = '';
+            }
+
+            if (nombreInput.value.trim() === '') {
+                mostrarError('nombre-error', 'El nombre es requerido.');
+                isValid = false;
+            } else {
+                limpiarError('nombre-error');
+            }
+
+            if (apellidosInput.value.trim() === '') {
+                mostrarError('apellidos-error', 'Los apellidos son requeridos.');
+                isValid = false;
+            } else {
+                limpiarError('apellidos-error');
+            }
+
+            if (dniInput.value.trim() === '') {
+                mostrarError('dni-error', 'El DNI es requerido.');
+                isValid = false;
+            } else if (!/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/.test(dniInput.value)) {
+                mostrarError('dni-error', 'Introduce un DNI válido (8 números y una letra).');
+                isValid = false;
+            } else {
+                limpiarError('dni-error');
+            }
+
+            if (emailInput.value.trim() === '') {
+                mostrarError('email-error', 'El correo electrónico es requerido.');
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                mostrarError('email-error', 'El formato del correo electrónico no es válido.');
+                isValid = false;
+            } else {
+                limpiarError('email-error');
+            }
+
+            if (direccionInput.value.trim() === '') {
+                mostrarError('direccion-error', 'La dirección postal es requerida.');
+                isValid = false;
+            } else {
+                limpiarError('direccion-error');
+            }
+
+            if (numeroTelefonoInput.value.trim() === '') {
+                mostrarError('telefono-error', 'El número de teléfono es requerido.');
+                isValid = false;
+            } else if (!/^[0-9]{9}$/.test(numeroTelefonoInput.value)) {
+                mostrarError('telefono-error', 'Introduce un número de teléfono de 9 dígitos.');
+                isValid = false;
+            } else {
+                limpiarError('telefono-error');
+            }
+
+            if (prefijoInput.value.trim() !== '' && !/^\+\d+$/.test(prefijoInput.value)) {
+                mostrarError('telefono-error', 'El prefijo debe empezar con + seguido de números.');
+                isValid = false;
+            } else if (numeroTelefonoInput.value.trim() !== '' && !/^[0-9]{9}$/.test(numeroTelefonoInput.value)) {
+                mostrarError('telefono-error', 'Introduce un número de teléfono de 9 dígitos.');
+                isValid = false;
+            } else if (numeroTelefonoInput.value.trim() === '' && prefijoInput.value.trim() !== '') {
+                mostrarError('telefono-error', 'El número de teléfono es requerido con el prefijo.');
+                isValid = false;
+            } else {
+                limpiarError('telefono-error');
+            }
+
+
+            if (!isValid) {
+                event.preventDefault(); // Evita que el formulario se envíe si hay errores
+            }
+        });
+    </script>
+        <script type="text/javascript" src="./css/jquery/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="./css/jquery/popper.min.js"></script>
+        <script type="text/javascript" src="./css/js/bootstrap.min.js"></script>
+        <footer>
+            <a href="mailto:casasruizsergio@gmail.com">Diseño web: Sergi Casas 2025 </a> Propietario: Jesús Belda
+        </footer>    
+</body>
+</html>
