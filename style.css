@@ -1,0 +1,55 @@
+
+
+
+.caja {
+    float: left;
+    font-family: sans-serif;
+    padding-top: 50px;
+    line-height: 50px;
+    /* display: block; */
+    margin: 10px;
+    /* padding: 10px; */
+    border: 2px solid black;
+    text-align: center;
+    /* color: white; */ */
+}
+
+.azul {
+    width: 200px;
+    height: 200px;
+    background: rgb(9, 223, 183);
+    color: white
+     /*le pongo sombra*/
+  box-shadow: 5px 5px 10px gray;
+  /*borde redondiado a las cajas*/
+  border-radius: 30px;
+  /*redondeo los a las esquinas en diferentes tamaños*/
+  border-radius: 100px 20px 20px 10px;
+
+}
+.verde {   
+     width: 200px;
+    height: 200px;
+    background: rgb(2, 228, 47);
+    color: black
+    border-radius: 30px;
+    border-radius: 10px 20px 20px 100px;
+}
+.roja {    
+    width: 200px;
+    height: 200px;
+    background: rgb(255, 217, 2);
+    color: white
+    border-radius: 30px;
+  /*redondeo los a las esquinas en diferentes tamaños*/
+    border-radius: 20px 100px 20px 20px;
+}
+.amarilla {
+    width: 200px;
+    height: 200px;
+    background: rgb(217, 140, 192);
+    color: rgb(0, 0, 0)
+    border-radius: 30px;
+  /*redondeo los a las esquinas en diferentes tamaños*/
+    border-radius: 20px 20px 100px 20px; 
+}
